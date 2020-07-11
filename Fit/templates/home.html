@@ -5,18 +5,18 @@
 
     <html>
         <head>
-            {% for o in user %}
-                <h1 contenteditable = "true" class ="myh"> {{o.first_name}} {{o.last_name}}</h1>
-            {%endfor%}
+           
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Login</button>
               </form>
               <div>
-                  <h2>
-                      {{first_name}} {{last_name}}
-                  </h2>
+                  
+                      {%for o in list%}
+                      <h2>{{o.first_name}} {{o.last_name}}</h2>
+                        {%endfor%}
+                  
               </div>
         </head>
     </html>

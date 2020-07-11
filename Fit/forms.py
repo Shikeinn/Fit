@@ -1,6 +1,6 @@
 from django import forms
-from models import User
+from Fit.models import User
 
 class UserForm(forms.Form):
-    first_name = forms.CharField(label="first name:")
-    last_name = forms.CharField(label="last name:")
+    first_name = forms.CharField(max_length = 30)
+    last_name = forms.CharField(max_length = 30)
