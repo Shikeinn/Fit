@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Fit',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +54,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'web_project.urls'
+
+LOGIN_REDIRECT_URL = '/'
 
 TEMPLATES = [
     {
