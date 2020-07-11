@@ -19,4 +19,5 @@ class HomeView(TemplateView):
         return render(request, self.template_name)
 
 def hello(request):
+    print("HIT IN PYTHON")
     return HttpResponse('Hello World')

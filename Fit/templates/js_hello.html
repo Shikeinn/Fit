@@ -1,26 +1,46 @@
 <script>
+    token = "{% csrf_token %}";
+    function error_handler()
+    {
 
-function call_ajax(url, form, success_callback, error_handler, query_string) {
-    // wrapper for a ajax calls
-    var post_data = query_string != undefined ? query_string : $(form).serialize();
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: post_data,
-        error: function (error) {
-            console.log("error calling: " + url, error);
-            error_handler(error.responseText);
-        }, 
-        success: function(response) {
-            success_callback(response);
-        }
+    }
+    function success_handler()
+    {
 
+    }
+
+    //This is a wrapper for ajax calls, query_string is optional if form is used
+    function call_ajax(url, form, success_callback, error_handler, query_string) {
+        // wrapper for a ajax calls
+        var post_data = query_string != undefined ? query_string : $(form).serialize();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: post_data,
+            error: function (error) {
+                console.log("error calling: " + url, error);
+                error_handler(error.responseText);
+            }, 
+            success: function(response) {
+                success_callback(response);
+            }
+
+            
+        });
+
+    }
+
+
+    function hello_call()
+    {
+        var hello = "{%url 'hello'%}";
+        console.log("HIT IN JS")
+        param_str = '';
         
-    });
+        param_str += "csrfmiddlewaretoken=" + token;
+        
+        call_ajax(hello, undefined, success_handler, error_handler, param_str);
 
-}
-
-
-
+    }
 
 </script>
