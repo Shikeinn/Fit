@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-<<<<<<< HEAD
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required
+def home(request):
+    return render(request, 'home.html')
 
 class HomeView(TemplateView):
     template_name = "home.html"
@@ -51,15 +55,5 @@ class RegisterView(TemplateView):
     #         name_list = User.objects.all() #pulls all data from the User model
     #         args = {'form': form, 'first_name':first_name, 'last_name':last_name, 'list':name_list}
     #     return render(request, self.template_name, args)
-=======
-from Fit.forms import UserForm
-from Fit.models import User
-from Fit.forms import UserForm
-from django.contrib.auth.decorators import login_required
-# Create your views here.
 
-@login_required
-def home(request):
-    return render(request, 'home.html')
-    
->>>>>>> 2a4df85ffcf0939797e836593b28770b612d931d
+# Create your views here.
