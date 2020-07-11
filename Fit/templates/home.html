@@ -1,17 +1,15 @@
-{% extends './base.html'%}
-{%block content%}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% extends 'base.html' %}
 
+{% block title %}Home{% endblock %}
 
-    <html>
-        <head>
-            {% for o in user %}
-                <h1 contenteditable = "true" class ="myh"> {{o.first_name}} {{o.last_name}}</h1>
-            {%endfor%}
-        </head>
-    </html>
-
-
-    {% include "css_fit.html" %}
-
+{% block content %}
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <p><a href="{% url 'logout' %}">logout</a></p>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">login</a>
+    {% endif %}
 {% endblock %}
+
+
