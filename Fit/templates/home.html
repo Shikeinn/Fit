@@ -1,9 +1,12 @@
 {%block main%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
     <html>
         <head>
-            <h1 class ="myh"> HELLO WORLD</h1>
+            {% for o in user %}
+                <h1 contenteditable = "true" class ="myh"> {{o.first_name}} {{o.last_name}}</h1>
+            {%endfor%}
         </head>
     </html>
 
