@@ -7,7 +7,12 @@ from Fit.models import User
 class HomeView(TemplateView):
     template_name = "home.html"
     def get(self, request):
-        bruh = "Hello World #swagmoney #cashhaver #dollarowner"
-        user = User.objects.all()
-        args = {'user': user}
+        form = UserForm()
+        args = {'form': form}
+        return render(request, self.template_name, args)
+    def post(self, request):
+        if (form.is_valid()):
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            args = {'first_name':first_name, 'last_name':last_name}
         return render(request, self.template_name, args)
