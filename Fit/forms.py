@@ -1,6 +1,10 @@
 from django import forms
 from Fit.models import User
 
+gender = (('male', 'male'), ('female', 'female'))
+
 class UserForm(forms.Form):
-    first_name = forms.CharField(max_length = 30)
-    last_name = forms.CharField(max_length = 30)
+    height = forms.IntegerField(min_value=0)
+    weight = forms.IntegerField(min_value=0)
+    age = forms.IntegerField(min_value=0, max_value=100)
+    gender = forms.ChoiceField(choices = gender)
