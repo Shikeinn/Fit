@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
     "python.pythonPath": "env/bin/python"
+=======
+    "python.pythonPath": "/bin/python"
+>>>>>>> d869490c34dd035a1d4fbb2e230ba3327ab4ac5d
 }
