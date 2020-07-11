@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from Fit.forms import UserForm
 from Fit.models import User
 # Create your views here.
 
