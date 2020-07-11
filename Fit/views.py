@@ -1,13 +1,40 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-from Fit.forms import UserForm
-from Fit.models import User
-from Fit.forms import UserForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here.
 
 class HomeView(TemplateView):
     template_name = "home.html"
+    
+class SuccessView(TemplateView):
+    template_name = "registration/success.html"
+
+class RegisterView(TemplateView):
+    template_name = "registration/register.html"
+
+    def get(self, request):
+        form = UserCreationForm()
+        args = {'form':form}
+        return render(request, self.template_name, args)
+
+    def post(self, request):
+        #if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        args = {'form':form}
+        print(form.is_valid())
+        print(form.errors)
+        if (form.is_valid()):
+            form.save()
+            return redirect("/success")
+
+        # else:
+        #     print(form.errors)
+        #     form = UserCreationForm()
+        return render(request, self.template_name, args)
+
     # def get(self, request):
     #     form = UserForm() #initialize form
     #     args = {'form': form}
