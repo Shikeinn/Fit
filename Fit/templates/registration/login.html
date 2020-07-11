@@ -1,0 +1,27 @@
+{% extends '../base.html'%}
+{%block content%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+    <html>
+        <head>
+           
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Login</button>
+              </form>
+              <div>
+                  
+                      {%for o in list%}
+                      <h2>{{o.first_name}} {{o.last_name}}</h2>
+                        {%endfor%}
+                  
+              </div>
+        </head>
+    </html>
+
+
+    {% include "css_fit.html" %}
+
+{% endblock %}
