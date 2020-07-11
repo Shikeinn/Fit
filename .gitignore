@@ -1,4 +1,5 @@
 *.pyc
 *.swp
 *~
-.vscode/settings.json
+
+*settings.json
