@@ -5,19 +5,12 @@
 
     <html>
         <head>
-           
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Login</button>
-              </form>
-              <div>
-                  
-                      {%for o in list%}
-                      <h2>{{o.first_name}} {{o.last_name}}</h2>
-                        {%endfor%}
-                  
-              </div>
+           <h2>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
         </head>
     </html>
 
