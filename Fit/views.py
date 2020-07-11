@@ -10,4 +10,13 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def home(request):
     return render(request, 'home.html')
-    
+
+class HomeView(TemplateView):
+    template_name="base.html"
+    def get(self, request):
+        args ={'test':'asdf'}
+        print('asdf')
+        return render(request, self.template_name)
+
+def hello(request):
+    return HttpResponse('Hello World')
