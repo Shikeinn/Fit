@@ -7,6 +7,6 @@ urlpatterns = [
     path('', views.home, name = 'home'),
     path('register/', RegisterView.as_view(), name = 'register'),
     path('success/', SuccessView.as_view(), name = 'success'),
-    , url(r'^hello/', views.hello, name='hello')
+    url(r'^hello/', views.hello, name='hello')
 ]
 

@@ -12,31 +12,37 @@ from Fit.forms import UserForm
 @login_required
 def home(request):
     args = {}
+    try:
+        userInfo = UserInfo.objects.get(user=request.user)
+        args = {
+        'userInfo': userInfo,     
+        }
+    except UserInfo.DoesNotExist:
+        userInfo = None
+        form = UserForm()
+        args = {
+        'userInfo': userInfo,  
+        'form': form,      
+        }
     
     if request.method == 'POST':
         form = UserForm(request.POST)
-        if (form.is_valid()):
+        if (form.is_valid() and userInfo == None):
             userInfo = UserInfo()
             userInfo.user = request.user
             userInfo.weight = request.POST.get('weight')
-            userInfo.height = (request.POST.get('heightFeet') * 12) + request.POST.get('heightInches')
-            userInfo.gender = request.POST.get('gender')
+            print(request.POST.get('heightFeet'))
+            print(request.POST.get('heightInches'))
+            userInfo.height = (int(request.POST.get('heightFeet')) * 12) + int(request.POST.get('heightInches'))
+            userInfo.sex = request.POST.get('sex')
+            userInfo.age = request.POST.get('age')
             userInfo.save()
-        
-        return render(request, 'home.html', args)
-
-        
-    else:
-        try:
-            userInfo = UserInfo.objects.get(user=request.user)
-        except UserInfo.DoesNotExist:
-            userInfo = None
-            form = UserForm()
         args = {
-            'userInfo': userInfo,  
-            'form': form,      
+        'userInfo': userInfo,  
+        'form': form,      
         }
-        return render(request, 'home.html', args)
+            
+    return render(request, 'home.html', args)
 
     
     
@@ -97,5 +103,6 @@ class HomeView(TemplateView):
         return render(request, self.template_name)
 
 def hello(request):
+    UserInfo.objects.all().delete()
     print("HIT IN PYTHON")
     return HttpResponse('Hello World')
