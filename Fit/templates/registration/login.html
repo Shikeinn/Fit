@@ -3,6 +3,11 @@
 {%block content%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{% static 'accounts.css' %}">
+<style>
+    .login-modal {
+        background: white;
+    }
+</style>
 
 {% load crispy_forms_tags %}
 
@@ -16,12 +21,11 @@
                         {{ form|crispy }}
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
-                    <p class="justify-right">Don't have an account?<a href = "../../register">Click here</a></p>
+                    <p class="justify-right">Don't have an account? <a href = "../../register">Click here</a></p>
                 </div>
             </div>
         </head>
     </html>
-
 
     {% include "css_fit.html" %}
 

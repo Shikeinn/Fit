@@ -5,17 +5,57 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+    <style>
+        .modal {
+            display: block;
+        }
+
+        .modal-header span {
+            display: none;
+        }
+        .login-modal {
+            background: white;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .login-container {
+            padding: 5em 4em;
+            justify-content: right;
+        }
+    </style>
+
+
 
     {% if userInfo != None %}
-        <p>weight: {{userInfo.weight}}</p>
-        <p>age: {{userInfo.age}}</p>
-        <p>sex: {{userInfo.sex}}</p>
-        <p>height: {{userInfo.height}}</p>
+        <div class="login-modal">
+            <div class="login-container">
+                <p>weight: {{userInfo.weight}}</p>
+                <p>age: {{userInfo.age}}</p>
+                <p>sex: {{userInfo.sex}}</p>
+                <p>height: {{userInfo.height}}</p>
+            </div>
+        </div>
+    
     {% else %}
         <form method="POST" class="form-group">
-            {% csrf_token %}
-            {{form|crispy}}
-            <button type="submit" class="btn btn-success">SignUp</button>
+            <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <span aria-hidden="false">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </form>
     {% endif %}
 {% endblock %}
