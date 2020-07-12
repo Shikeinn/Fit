@@ -4,12 +4,43 @@ from django.views.generic import TemplateView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from Fit.models import UserInfo
+from Fit.forms import UserForm
 
 # Create your views here.
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    args = {}
+    
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if (form.is_valid()):
+            userInfo = UserInfo()
+            userInfo.user = request.user
+            userInfo.weight = request.POST.get('weight')
+            userInfo.height = (request.POST.get('heightFeet') * 12) + request.POST.get('heightInches')
+            userInfo.gender = request.POST.get('gender')
+            userInfo.save()
+        
+        return render(request, 'home.html', args)
+
+        
+    else:
+        try:
+            userInfo = UserInfo.objects.get(user=request.user)
+        except UserInfo.DoesNotExist:
+            userInfo = None
+            form = UserForm()
+        args = {
+            'userInfo': userInfo,  
+            'form': form,      
+        }
+        return render(request, 'home.html', args)
+
+    
+    
+    
 
 class HomeView(TemplateView):
     template_name = "home.html"
