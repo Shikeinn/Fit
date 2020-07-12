@@ -1,9 +1,5 @@
 *.pyc
-<<<<<<< HEAD
-/vscode/setting.json
-=======
 *.swp
 *~
 
 *settings.json
->>>>>>> development
