@@ -88,3 +88,14 @@ class RegisterView(TemplateView):
     #     return render(request, self.template_name, args)
 
 # Create your views here.
+
+class HomeView(TemplateView):
+    template_name="base.html"
+    def get(self, request):
+        args ={'test':'asdf'}
+        print('asdf')
+        return render(request, self.template_name)
+
+def hello(request):
+    print("HIT IN PYTHON")
+    return HttpResponse('Hello World')
