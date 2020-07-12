@@ -1,7 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'accounts.css' %}">
 
  <h2>You have registered!</h2>
+ <button type="menu" class="btn" color="white"><a href = "../accounts/login">Go to Login</a></button>
 
 {% endblock %}
