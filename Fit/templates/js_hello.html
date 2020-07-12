@@ -1,12 +1,12 @@
 <script>
-    token = "{% csrf_token %}";
+    
     function error_handler()
     {
-
+        alert("fail")
     }
     function success_handler()
     {
-
+        alert("good")
     }
 
     //This is a wrapper for ajax calls, query_string is optional if form is used
@@ -33,9 +33,10 @@
 
     function hello_call()
     {
+        var token = "{{ csrf_token }}";
         var hello = "{%url 'hello'%}";
-        console.log("HIT IN JavaScript")
-        param_str = '';
+        console.log("HIT IN JavaScript");
+        var param_str = '';
         
         param_str += "csrfmiddlewaretoken=" + token;
         
